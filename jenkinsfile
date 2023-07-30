@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clonar repositório') {
+            steps {
+                git branch: 'main', url: 'https://github.com/Lucassev05/testes-api-cy.git'
+            }
+        }
+        stage('Instalar pacotes') {
+            steps {
+                sh 'npm install'
+            }
+        }
+        stage('Executar testes') {
+            steps {
+                sh 'npm run cy:open'
+            }
+        }
+    }
+}
